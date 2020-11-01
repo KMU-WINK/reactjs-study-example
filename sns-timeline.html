@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <style>
+        .container {width: 768px; margin:0 auto; border:1px solid #ddd; padding:30px;}
+
+        textarea, button {width:100%;}
+        textarea { height:200px; font-size:20px;}
+        button {}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <textarea id="postInput" placeholder="글 주제를 입력해주세요."></textarea>
+        <button onclick="snsPost()">글 쓰기</button>
+    </div>
+
+    <div id="timeline">
+        <div class="container">
+            <h1>이종휘</h1>
+            <p>안녕 애들아 ㅋㅋ</p>
+        </div>
+    </div>
+
+    <script>
+        let timeline = document.querySelector('#timeline');
+
+        function snsPost(){
+            const postValue = document.querySelector('#postInput').value // 글
+
+            let container = document.createElement('div');
+            container.setAttribute('class', 'container');
+
+            let owner = document.createElement('h1');
+            let content = document.createElement('p');
+            owner.appendChild(document.createTextNode('이종휘'));
+            content.appendChild(document.createTextNode(postValue));
+
+            container.appendChild(owner);
+            container.appendChild(content);
+
+            // timeline.appendChild(container); // 뒤에 넣기
+            timeline.insertBefore(container, timeline.children[0]); // 앞에 넣기
+        }
+
+    </script>
+</body>
+</html>
